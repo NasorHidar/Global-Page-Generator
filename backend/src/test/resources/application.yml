@@ -1,0 +1,38 @@
+# Test-specific overrides applied when running @SpringBootTest.
+# The real datasource URL/credentials are overridden by @DynamicPropertySource
+# in ExecutionServiceIntegrationTest before the context loads.
+spring:
+  flyway:
+    enabled: true
+    validate-on-migrate: true
+
+  jpa:
+    show-sql: true                      # Show SQL in test output to aid debugging
+    hibernate:
+      ddl-auto: validate
+
+  # Disable Spring Security's default user auto-configuration in tests
+  security:
+    user:
+      name: disabled
+      password: disabled
+
+# Use a small pool in tests — we only need 1-2 concurrent connections
+  datasource:
+    hikari:
+      maximum-pool-size: 5
+      minimum-idle: 1
+      connection-timeout: 5000
+
+# Short timeouts for tests — overridden further by TestRestClientConfig @Bean
+app:
+  rest-client:
+    connect-timeout-ms: 1000
+    read-timeout-ms: 500
+
+logging:
+  level:
+    root: WARN
+    com.globalpagegenerator: DEBUG
+    org.flywaydb: INFO
+    com.zaxxer.hikari: DEBUG          # Useful to detect pool exhaustion in tests

@@ -1,0 +1,331 @@
+/* =============================================================================
+   App.css — Global styles and shell layout for the Global Page Generator.
+   Shared design tokens are inherited from DynamicServicePage.css.
+   ============================================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* ── Reset & base ───────────────────────────────────────────────────────────── */
+:root {
+  --gpg-bg-base:        #0d0f1a;
+  --gpg-bg-surface:     rgba(255, 255, 255, 0.04);
+  --gpg-bg-surface-hov: rgba(255, 255, 255, 0.08);
+  --gpg-border:         rgba(255, 255, 255, 0.10);
+  --gpg-accent:         #7c5cfc;
+  --gpg-accent-hover:   #9b80ff;
+  --gpg-accent-glow:    rgba(124, 92, 252, 0.35);
+  --gpg-text-primary:   #e8eaf0;
+  --gpg-text-secondary: #8c93a8;
+  --gpg-text-muted:     #555c72;
+  --gpg-danger:         #f05474;
+  --gpg-font-sans:      'Inter', system-ui, sans-serif;
+  --gpg-radius-md:      12px;
+  --gpg-radius-lg:      18px;
+  --gpg-shadow-card:    0 8px 32px rgba(0,0,0,0.45), 0 1px 0 rgba(255,255,255,0.06) inset;
+  --gpg-navbar-h:       60px;
+  --gpg-transition:     0.2s ease;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body, #root {
+  height: 100%;
+  font-family: var(--gpg-font-sans);
+  background: var(--gpg-bg-base);
+  color: var(--gpg-text-primary);
+}
+
+/* ── App layout ─────────────────────────────────────────────────────────────── */
+.gpg-app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ── Navbar ─────────────────────────────────────────────────────────────────── */
+.gpg-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: var(--gpg-navbar-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 0 2rem;
+  background: rgba(13, 15, 26, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--gpg-border);
+}
+
+.gpg-navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-shrink: 0;
+}
+
+.gpg-navbar-title {
+  font-size: 1rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #e8eaf0 40%, var(--gpg-accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  white-space: nowrap;
+}
+
+.gpg-navbar-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex: 1;
+  justify-content: flex-end;
+}
+
+/* ── Logo icon ──────────────────────────────────────────────────────────────── */
+.gpg-logo-icon {
+  font-size: 2.5rem;
+  line-height: 1;
+  color: var(--gpg-accent);
+  filter: drop-shadow(0 0 10px var(--gpg-accent-glow));
+}
+.gpg-logo-icon--sm { font-size: 1.3rem; }
+
+/* ── Main content ───────────────────────────────────────────────────────────── */
+.gpg-main {
+  flex: 1;
+  overflow-y: auto;
+}
+
+/* ── Welcome screen ─────────────────────────────────────────────────────────── */
+.gpg-welcome {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - var(--gpg-navbar-h));
+}
+
+.gpg-welcome-inner {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  opacity: 0.45;
+}
+
+.gpg-welcome-icon { font-size: 3.5rem; color: var(--gpg-accent); }
+
+.gpg-welcome-heading {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--gpg-text-primary);
+}
+
+.gpg-welcome-body {
+  font-size: 0.9rem;
+  color: var(--gpg-text-secondary);
+  max-width: 260px;
+}
+
+/* ── Token gate ─────────────────────────────────────────────────────────────── */
+.gpg-token-gate {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 2rem 1rem;
+  background:
+    radial-gradient(ellipse 60% 50% at 50% -10%, rgba(124,92,252,0.18) 0%, transparent 80%),
+    var(--gpg-bg-base);
+}
+
+.gpg-token-card {
+  width: 100%;
+  max-width: 400px;
+  background: var(--gpg-bg-surface);
+  border: 1px solid var(--gpg-border);
+  border-radius: var(--gpg-radius-lg);
+  padding: 2.5rem 2rem;
+  box-shadow: var(--gpg-shadow-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.gpg-token-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.gpg-logo-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #e8eaf0 30%, var(--gpg-accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gpg-token-subtitle {
+  font-size: 0.85rem;
+  color: var(--gpg-text-secondary);
+  text-align: center;
+}
+
+.gpg-token-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.gpg-token-field { width: 100%; }
+
+/* ── Service selector ───────────────────────────────────────────────────────── */
+.gpg-selector-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.gpg-selector-label { white-space: nowrap; }
+
+.gpg-selector-error {
+  font-size: 0.82rem;
+  color: var(--gpg-danger);
+}
+
+.gpg-select-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.gpg-select {
+  appearance: none;
+  -webkit-appearance: none;
+  height: 36px;
+  padding: 0 2.2rem 0 0.85rem;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid var(--gpg-border);
+  border-radius: var(--gpg-radius-md);
+  color: var(--gpg-text-primary);
+  font-family: var(--gpg-font-sans);
+  font-size: 0.88rem;
+  cursor: pointer;
+  outline: none;
+  min-width: 200px;
+  transition: border-color var(--gpg-transition), box-shadow var(--gpg-transition);
+}
+
+.gpg-select:focus {
+  border-color: var(--gpg-accent);
+  box-shadow: 0 0 0 3px var(--gpg-accent-glow);
+}
+
+.gpg-select option {
+  background: #1a1d2e;
+  color: var(--gpg-text-primary);
+}
+
+.gpg-select-arrow {
+  position: absolute;
+  right: 0.65rem;
+  pointer-events: none;
+  font-size: 0.75rem;
+  color: var(--gpg-text-muted);
+}
+
+/* ── Shared button / input utilities (referenced in App.jsx) ────────────────── */
+.gpg-input {
+  height: 44px;
+  padding: 0 1rem;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid var(--gpg-border);
+  border-radius: var(--gpg-radius-md);
+  color: var(--gpg-text-primary);
+  font-family: var(--gpg-font-sans);
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color var(--gpg-transition), box-shadow var(--gpg-transition);
+}
+.gpg-input::placeholder { color: var(--gpg-text-muted); }
+.gpg-input:focus {
+  border-color: var(--gpg-accent);
+  box-shadow: 0 0 0 3px var(--gpg-accent-glow);
+}
+
+.gpg-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  height: 44px;
+  padding: 0 1.4rem;
+  border: none;
+  border-radius: var(--gpg-radius-md);
+  font-family: var(--gpg-font-sans);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--gpg-transition), box-shadow var(--gpg-transition),
+              transform 0.1s ease;
+  white-space: nowrap;
+  text-decoration: none;
+}
+.gpg-btn:active:not(:disabled) { transform: scale(0.97); }
+.gpg-btn:disabled { opacity: 0.45; cursor: not-allowed; }
+
+.gpg-btn--primary { background: var(--gpg-accent); color: #fff; }
+.gpg-btn--primary:hover:not(:disabled) {
+  background: var(--gpg-accent-hover);
+  box-shadow: 0 4px 18px var(--gpg-accent-glow);
+}
+.gpg-btn--ghost {
+  background: transparent;
+  border: 1px solid var(--gpg-border);
+  color: var(--gpg-text-secondary);
+}
+.gpg-btn--ghost:hover:not(:disabled) {
+  background: var(--gpg-bg-surface-hov);
+  color: var(--gpg-text-primary);
+}
+.gpg-btn--sm  { height: 34px; padding: 0 1rem; font-size: 0.82rem; }
+.gpg-btn--full { width: 100%; }
+
+/* ── Utilities ──────────────────────────────────────────────────────────────── */
+.gpg-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: var(--gpg-text-secondary);
+}
+.gpg-muted { font-size: 0.85rem; color: var(--gpg-text-muted); }
+
+/* Spinner (also used in DynamicServicePage.css — safe to declare here as well) */
+@keyframes gpg-spin { to { transform: rotate(360deg); } }
+.gpg-spinner {
+  width: 28px; height: 28px;
+  border: 3px solid rgba(124,92,252,0.25);
+  border-top-color: var(--gpg-accent);
+  border-radius: 50%;
+  animation: gpg-spin 0.75s linear infinite;
+  flex-shrink: 0;
+}
+.gpg-spinner--sm { width: 16px; height: 16px; border-width: 2px; }
+
+/* ── Responsive ─────────────────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .gpg-navbar { padding: 0 1rem; flex-wrap: wrap; height: auto; padding-top: 0.5rem; padding-bottom: 0.5rem; }
+  .gpg-navbar-controls { flex-wrap: wrap; }
+  .gpg-select { min-width: 150px; }
+}

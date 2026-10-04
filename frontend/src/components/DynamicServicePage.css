@@ -1,0 +1,387 @@
+/* =============================================================================
+   DynamicServicePage.css
+   Enterprise-grade styling for the Global Page Generator dynamic page.
+   Design system: dark glassmorphism with violet accent palette.
+   ============================================================================= */
+
+/* ── Design tokens ──────────────────────────────────────────────────────────── */
+:root {
+  --gpg-bg-base:        #0d0f1a;
+  --gpg-bg-surface:     rgba(255, 255, 255, 0.04);
+  --gpg-bg-surface-hov: rgba(255, 255, 255, 0.08);
+  --gpg-border:         rgba(255, 255, 255, 0.10);
+  --gpg-border-focus:   #7c5cfc;
+
+  --gpg-accent:         #7c5cfc;
+  --gpg-accent-hover:   #9b80ff;
+  --gpg-accent-glow:    rgba(124, 92, 252, 0.35);
+  --gpg-danger:         #f05474;
+  --gpg-success:        #3ecf8e;
+
+  --gpg-text-primary:   #e8eaf0;
+  --gpg-text-secondary: #8c93a8;
+  --gpg-text-muted:     #555c72;
+
+  --gpg-font-sans:      'Inter', system-ui, -apple-system, sans-serif;
+  --gpg-font-mono:      'JetBrains Mono', 'Fira Code', monospace;
+
+  --gpg-radius-sm:      6px;
+  --gpg-radius-md:      12px;
+  --gpg-radius-lg:      18px;
+
+  --gpg-shadow-card:    0 8px 32px rgba(0, 0, 0, 0.45),
+                        0 1px 0 rgba(255, 255, 255, 0.06) inset;
+  --gpg-shadow-glow:    0 0 0 3px var(--gpg-accent-glow);
+
+  --gpg-transition:     0.2s ease;
+}
+
+/* ── Base reset ─────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background-color: var(--gpg-bg-base);
+  color:            var(--gpg-text-primary);
+  font-family:      var(--gpg-font-sans);
+  font-size:        15px;
+  line-height:      1.6;
+  min-height:       100vh;
+}
+
+/* ── Page layout ────────────────────────────────────────────────────────────── */
+.gpg-page {
+  max-width:   1200px;
+  margin:      0 auto;
+  padding:     2.5rem 1.5rem 4rem;
+  display:     flex;
+  flex-direction: column;
+  gap:         1.75rem;
+}
+
+/* ── Page header ────────────────────────────────────────────────────────────── */
+.gpg-page-header {
+  display:     flex;
+  align-items: center;
+  gap:         1rem;
+  flex-wrap:   wrap;
+}
+
+.gpg-page-title {
+  font-size:   1.85rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  background:  linear-gradient(135deg, #e8eaf0 30%, var(--gpg-accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gpg-request-badge {
+  margin-left:     auto;
+  font-size:       0.75rem;
+  font-family:     var(--gpg-font-mono);
+  color:           var(--gpg-success);
+  background:      rgba(62, 207, 142, 0.12);
+  border:          1px solid rgba(62, 207, 142, 0.30);
+  border-radius:   var(--gpg-radius-sm);
+  padding:         0.2rem 0.65rem;
+  white-space:     nowrap;
+  letter-spacing:  0.5px;
+}
+
+/* ── Search card ────────────────────────────────────────────────────────────── */
+.gpg-search-card {
+  background:   var(--gpg-bg-surface);
+  border:       1px solid var(--gpg-border);
+  border-radius: var(--gpg-radius-lg);
+  padding:      1.75rem 2rem;
+  box-shadow:   var(--gpg-shadow-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* ── Form elements ──────────────────────────────────────────────────────────── */
+.gpg-search-form { display: flex; flex-direction: column; gap: 0.75rem; }
+
+.gpg-label {
+  font-size:   0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color:       var(--gpg-text-secondary);
+}
+
+.gpg-search-row {
+  display:   flex;
+  gap:       0.75rem;
+  flex-wrap: wrap;
+}
+
+.gpg-input {
+  flex:             1;
+  min-width:        220px;
+  height:           44px;
+  padding:          0 1rem;
+  background:       rgba(255, 255, 255, 0.06);
+  border:           1px solid var(--gpg-border);
+  border-radius:    var(--gpg-radius-md);
+  color:            var(--gpg-text-primary);
+  font-family:      var(--gpg-font-sans);
+  font-size:        0.95rem;
+  transition:       border-color var(--gpg-transition),
+                    box-shadow   var(--gpg-transition);
+  outline:          none;
+}
+
+.gpg-input::placeholder { color: var(--gpg-text-muted); }
+
+.gpg-input:focus {
+  border-color: var(--gpg-border-focus);
+  box-shadow:   var(--gpg-shadow-glow);
+}
+
+.gpg-input:disabled {
+  opacity:       0.5;
+  cursor:        not-allowed;
+}
+
+/* ── Buttons ────────────────────────────────────────────────────────────────── */
+.gpg-btn {
+  display:       inline-flex;
+  align-items:   center;
+  gap:           0.4rem;
+  height:        44px;
+  padding:       0 1.4rem;
+  border:        none;
+  border-radius: var(--gpg-radius-md);
+  font-family:   var(--gpg-font-sans);
+  font-size:     0.9rem;
+  font-weight:   600;
+  cursor:        pointer;
+  transition:    background var(--gpg-transition),
+                 box-shadow var(--gpg-transition),
+                 transform  0.1s ease;
+  white-space:   nowrap;
+}
+.gpg-btn:active:not(:disabled) { transform: scale(0.97); }
+
+.gpg-btn--primary {
+  background:  var(--gpg-accent);
+  color:       #fff;
+}
+.gpg-btn--primary:hover:not(:disabled) {
+  background:  var(--gpg-accent-hover);
+  box-shadow:  0 4px 18px var(--gpg-accent-glow);
+}
+.gpg-btn--primary:disabled {
+  opacity:     0.45;
+  cursor:      not-allowed;
+}
+
+.gpg-btn--ghost {
+  background:  transparent;
+  border:      1px solid var(--gpg-border);
+  color:       var(--gpg-text-secondary);
+}
+.gpg-btn--ghost:hover:not(:disabled) {
+  background:  var(--gpg-bg-surface-hov);
+  color:       var(--gpg-text-primary);
+  border-color: rgba(255,255,255,0.2);
+}
+.gpg-btn--ghost:disabled { opacity: 0.4; cursor: not-allowed; }
+
+/* ── Field error ────────────────────────────────────────────────────────────── */
+.gpg-field-error {
+  font-size:  0.82rem;
+  color:      var(--gpg-danger);
+  margin-top: 0.25rem;
+  display:    flex;
+  align-items: center;
+  gap:        0.35rem;
+}
+.gpg-field-error::before { content: '✕'; font-weight: 700; }
+
+/* ── Components area ────────────────────────────────────────────────────────── */
+.gpg-components-area {
+  display:        flex;
+  flex-direction: column;
+  gap:            1.5rem;
+}
+
+.gpg-component-section {
+  background:     var(--gpg-bg-surface);
+  border:         1px solid var(--gpg-border);
+  border-radius:  var(--gpg-radius-lg);
+  overflow:       hidden;
+  box-shadow:     var(--gpg-shadow-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition:     border-color var(--gpg-transition);
+}
+.gpg-component-section:hover { border-color: rgba(124,92,252,0.3); }
+
+/* ── Placeholder states ─────────────────────────────────────────────────────── */
+.gpg-table-placeholder {
+  display:         flex;
+  flex-direction:  column;
+  align-items:     center;
+  justify-content: center;
+  padding:         3.5rem 2rem;
+  gap:             0.75rem;
+  color:           var(--gpg-text-secondary);
+  font-size:       0.9rem;
+  text-align:      center;
+}
+
+.gpg-placeholder-icon {
+  font-size:   2.2rem;
+  line-height: 1;
+  filter:      grayscale(0.3);
+}
+
+.gpg-error-state { color: var(--gpg-danger); }
+.gpg-error-state .gpg-placeholder-icon { filter: none; }
+
+/* ── Data table ─────────────────────────────────────────────────────────────── */
+.gpg-table-wrapper {
+  overflow-x: auto;
+  width:      100%;
+}
+
+.gpg-data-table {
+  width:           100%;
+  border-collapse: separate;
+  border-spacing:  0;
+  font-size:       0.88rem;
+}
+
+.gpg-data-table thead { position: sticky; top: 0; z-index: 1; }
+
+.gpg-data-table th {
+  background:      rgba(124, 92, 252, 0.12);
+  color:           var(--gpg-accent-hover);
+  font-weight:     600;
+  font-size:       0.75rem;
+  letter-spacing:  0.8px;
+  text-transform:  uppercase;
+  padding:         0.85rem 1.2rem;
+  text-align:      left;
+  border-bottom:   1px solid rgba(124, 92, 252, 0.25);
+  white-space:     nowrap;
+}
+
+.gpg-data-table th:first-child { border-radius: var(--gpg-radius-md) 0 0 0; }
+.gpg-data-table th:last-child  { border-radius: 0 var(--gpg-radius-md) 0 0; }
+
+.gpg-data-table td {
+  padding:     0.9rem 1.2rem;
+  border-bottom: 1px solid var(--gpg-border);
+  color:       var(--gpg-text-primary);
+  font-family: var(--gpg-font-sans);
+  vertical-align: top;
+  transition:  background var(--gpg-transition);
+}
+
+.gpg-data-table tbody tr:hover td { background: var(--gpg-bg-surface-hov); }
+.gpg-data-table tbody tr:last-child td { border-bottom: none; }
+
+/* ── Spinner ────────────────────────────────────────────────────────────────── */
+@keyframes gpg-spin {
+  to { transform: rotate(360deg); }
+}
+
+.gpg-spinner {
+  width:         28px;
+  height:        28px;
+  border:        3px solid rgba(124, 92, 252, 0.25);
+  border-top-color: var(--gpg-accent);
+  border-radius: 50%;
+  animation:     gpg-spin 0.75s linear infinite;
+  flex-shrink:   0;
+}
+.gpg-spinner--large { width: 48px; height: 48px; border-width: 4px; }
+.gpg-spinner--sm    { width: 14px; height: 14px; border-width: 2px; }
+
+/* ── Full-page loading / error ──────────────────────────────────────────────── */
+.gpg-page-loading,
+.gpg-page-error {
+  display:         flex;
+  flex-direction:  column;
+  align-items:     center;
+  justify-content: center;
+  min-height:      60vh;
+  gap:             1rem;
+  color:           var(--gpg-text-secondary);
+  text-align:      center;
+}
+
+.gpg-page-error h2 { color: var(--gpg-danger); font-size: 1.3rem; }
+
+/* ── Unknown component ──────────────────────────────────────────────────────── */
+.gpg-unknown-component {
+  padding:  1rem 1.5rem;
+  color:    var(--gpg-text-muted);
+  font-size: 0.82rem;
+}
+
+/* ── Dev debug panel ────────────────────────────────────────────────────────── */
+.gpg-debug-panel {
+  background:    rgba(0,0,0,0.35);
+  border:        1px solid var(--gpg-border);
+  border-radius: var(--gpg-radius-md);
+  overflow:      hidden;
+}
+.gpg-debug-panel summary {
+  padding:       0.75rem 1.25rem;
+  cursor:        pointer;
+  font-size:     0.78rem;
+  font-weight:   600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color:          var(--gpg-text-muted);
+  user-select:    none;
+}
+.gpg-debug-panel pre {
+  padding:      1rem 1.25rem;
+  font-family:  var(--gpg-font-mono);
+  font-size:    0.78rem;
+  color:        var(--gpg-text-secondary);
+  overflow-x:   auto;
+  max-height:   400px;
+  line-height:  1.5;
+}
+
+/* ── Responsive ─────────────────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .gpg-page         { padding: 1.25rem 1rem 3rem; }
+  .gpg-search-card  { padding: 1.25rem; }
+  .gpg-search-row   { flex-direction: column; }
+  .gpg-input,
+  .gpg-btn          { width: 100%; }
+
+  /* Responsive table: each cell becomes a labelled row */
+  .gpg-data-table thead { display: none; }
+  .gpg-data-table tbody tr {
+    display:       block;
+    padding:       0.75rem 1rem;
+    border-bottom: 1px solid var(--gpg-border);
+  }
+  .gpg-data-table td {
+    display:    flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap:        0.5rem;
+    padding:    0.4rem 0;
+    border:     none;
+    font-size:  0.85rem;
+  }
+  .gpg-data-table td::before {
+    content:    attr(data-label);
+    font-weight: 600;
+    font-size:  0.72rem;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    color:      var(--gpg-text-secondary);
+    white-space: nowrap;
+  }
+}
